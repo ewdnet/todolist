@@ -1,5 +1,5 @@
 // TODO list
-// document.addEventListener('DOMContentLoaded', () => {
+
 // GET THE ELEMENTS
 // form element
 const formElement = document.querySelector('form');
@@ -10,29 +10,14 @@ const btnClearInput = document.getElementById('btn-clear-input');
 // button to add new item
 const btnAddItem = document.getElementById('btn-add-item');
 
-// start the task-arrays
-// let currentTasks = [];
-// let completedTasks = [];
-
-// get current tasks from localStorage, if any
-// let currentTasks = JSON.parse(localStorage.getItem('currentTasks')) || [];
-// get them and call the render function
-// if (currentFromLocalStorage) {
-//     currentTasks = currentFromLocalStorage;
-//     render('current');
-// }
 let currentTasks = JSON.parse(localStorage.getItem('currentTasks')) || [];
 if (currentTasks.length > 0) {
     render('current');
 }
-// render('current');
-// get completed tasks from localStorage, if any
-// let completedFromLocalStorage = JSON.parse(localStorage.getItem('completedTasks'));
-// // get them and call the render function
-// if (completedFromLocalStorage) {
-//     completedTasks = completedFromLocalStorage;
-//     render('completed');
-// }
+let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+if (completedTasks.length > 0) {
+    render('completed');
+}
 
 //EVENT LISTENER
 // enable buttons, if input not empty
@@ -71,7 +56,6 @@ function btnEnable(e) {
 //
 function addNewItem(e) {
     e.preventDefault();
-    // currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
     const itemId = Date.now();
     let itemText = itemInput.value;
     if (itemText !== '') {
@@ -79,28 +63,27 @@ function addNewItem(e) {
             itemid: itemId,
             text: itemText,
         };
-
+        currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
         // push the item object
         currentTasks.push(itemObj);
         itemText = '';
-        console.log(currentTasks);
         localStorage.setItem('currentTasks', JSON.stringify(currentTasks));
-        // render('current', itemId, false);
-        render('current');
         // reset the array currentTasks
         currentTasks = [];
+        render('current');
         // reset the input after we added a new item
         itemInput.value = '';
         // disable the buttons
         btnDisable();
+
+        location.reload();
     }
 }
 
 // Task lists render function
 function render(list) {
-    const taskList = currentTasks;
-    items = JSON.parse(localStorage.getItem(taskList));
-
+    let taskList = `${list}Tasks`;
+    let items = JSON.parse(localStorage.getItem(taskList));
     let olEl = document.getElementById(list);
     let checked = list === 'completed' ? 'success' : 'warning';
     for (let i = 0; i < items.length; i++) {
@@ -113,7 +96,7 @@ function render(list) {
         let complete = document.createElement('span');
         complete.classList.add('uk-margin-small-right', 'uk-text-' + checked, 'uk-icon-button');
         complete.setAttribute('data-uk-icon', 'icon: check; ratio: 1.3');
-        complete.addEventListener('click', completeItem);
+        // complete.addEventListener('click', completeItem);
         // wrap the task (text) into a span element
         let textWrap = document.createElement('span');
         textWrap.classList.add('uk-flex-auto');
@@ -122,12 +105,7 @@ function render(list) {
         let remove = document.createElement('span');
         remove.classList.add('uk-margin-small-left', 'uk-text-danger', 'uk-icon-button');
         remove.setAttribute('data-uk-icon', 'trash');
-        remove.addEventListener('click', () => {
-            let items = JSON.parse(localStorage.getItem(taskList));
-            let index = items.findIndex((item) => item.itemid == itemid);
-            items.splice(index, 1);
-            localStorage.setItem(taskList, JSON.stringify(items));
-        });
+        remove.addEventListener('click', removeItem(taskList, itemid));
 
         // append all three elements to the li element
         item.appendChild(complete);
@@ -136,5 +114,11 @@ function render(list) {
         // insert the li on the top of the ul
         olEl.insertBefore(item, olEl.childNodes[0]);
     }
+    items = [];
 }
-// });
+
+function removeItem(taskList, itemid) {
+    let items = JSON.parse(localStorage.getItem(taskList));
+    let index = items.findIndex((item) => item.itemid == itemid);
+    items.splice(index, 1);
+}
