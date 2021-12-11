@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Task lists render function
     function render(list) {
-        const taskList = `${list}Tasks`;
-        const items = JSON.parse(localStorage.getItem(taskList));
+        const taskList = currentTasks;
+        items = JSON.parse(localStorage.getItem(taskList));
 
         let olEl = document.getElementById(list);
         let checked = list === 'completed' ? 'success' : 'warning';
