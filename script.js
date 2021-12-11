@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //
     function addNewItem(e) {
         e.preventDefault();
-        // currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
+        currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
         const itemId = Date.now();
         let itemText = itemInput.value;
         if (itemText != '') {
