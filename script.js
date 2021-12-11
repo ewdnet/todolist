@@ -63,7 +63,6 @@ function addNewItem(e) {
             itemid: itemId,
             text: itemText,
         };
-        currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
         // push the item object
         currentTasks.push(itemObj);
         itemText = '';
@@ -73,10 +72,10 @@ function addNewItem(e) {
         render('current');
         // reset the input after we added a new item
         itemInput.value = '';
+        // reset the array
+
         // disable the buttons
         btnDisable();
-
-        location.reload();
     }
 }
 
@@ -114,7 +113,6 @@ function render(list) {
         // insert the li on the top of the ul
         olEl.insertBefore(item, olEl.childNodes[0]);
     }
-    items = [];
 }
 
 function removeItem(taskList, itemid) {
