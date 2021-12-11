@@ -74,15 +74,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
         const itemId = Date.now();
         let itemText = itemInput.value;
-        if (itemText != '') {
+        if (itemText !== '') {
             let itemObj = {
                 itemid: itemId,
                 text: itemText,
             };
-            console.log(currentTasks);
+
             // push the item object
             currentTasks.push(itemObj);
             itemText = '';
+            console.log(currentTasks);
             localStorage.setItem('currentTasks', JSON.stringify(currentTasks));
             // render('current', itemId, false);
             render('current');
