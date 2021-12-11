@@ -11,23 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnAddItem = document.getElementById('btn-add-item');
 
     // start the task-arrays
-    let currentTasks = [];
-    let completedTasks = [];
+    // let currentTasks = [];
+    // let completedTasks = [];
 
-    // // get current tasks from localStorage, if any
-    // let currentFromLocalStorage = JSON.parse(localStorage.getItem('currentTasks'));
-    // // get them and call the render function
-    // if (currentFromLocalStorage) {
-    //     currentTasks = currentFromLocalStorage;
-    //     render('current');
-    // }
-    // // get completed tasks from localStorage, if any
-    // const completedFromLocalStorage = JSON.parse(localStorage.getItem('completedTasks'));
-    // // get them and call the render function
-    // if (completedFromLocalStorage) {
-    //     completedTasks = completedFromLocalStorage;
-    //     render('completed');
-    // }
+    // get current tasks from localStorage, if any
+    let currentFromLocalStorage = JSON.parse(localStorage.getItem('currentTasks')) || [];
+    // get them and call the render function
+    if (currentFromLocalStorage) {
+        currentTasks = currentFromLocalStorage;
+        render('current');
+    }
+    // get completed tasks from localStorage, if any
+    const completedFromLocalStorage = JSON.parse(localStorage.getItem('completedTasks'));
+    // get them and call the render function
+    if (completedFromLocalStorage) {
+        completedTasks = completedFromLocalStorage;
+        render('completed');
+    }
 
     //EVENT LISTENER
     // enable buttons, if input not empty
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //
     function addNewItem(e) {
         e.preventDefault();
-        // currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
+        currentTasks = JSON.parse(localStorage.getItem('currentTasks'));
         const itemId = Date.now();
         let itemText = itemInput.value;
         if (itemText != '') {
