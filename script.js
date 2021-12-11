@@ -15,19 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // let completedTasks = [];
 
     // get current tasks from localStorage, if any
-    let currentFromLocalStorage = JSON.parse(localStorage.getItem('currentTasks')) || [];
+    let currentTasks = JSON.parse(localStorage.getItem('currentTasks')) || [];
     // get them and call the render function
-    if (currentFromLocalStorage) {
-        currentTasks = currentFromLocalStorage;
+    // if (currentFromLocalStorage) {
+    //     currentTasks = currentFromLocalStorage;
+    //     render('current');
+    // }
+    let currentTasks = JSON.parse(localStorage.getItem('currentTasks')) || [];
+    if (currentTasks.length > 0) {
         render('current');
     }
+    // render('current');
     // get completed tasks from localStorage, if any
-    const completedFromLocalStorage = JSON.parse(localStorage.getItem('completedTasks'));
-    // get them and call the render function
-    if (completedFromLocalStorage) {
-        completedTasks = completedFromLocalStorage;
-        render('completed');
-    }
+    // let completedFromLocalStorage = JSON.parse(localStorage.getItem('completedTasks'));
+    // // get them and call the render function
+    // if (completedFromLocalStorage) {
+    //     completedTasks = completedFromLocalStorage;
+    //     render('completed');
+    // }
 
     //EVENT LISTENER
     // enable buttons, if input not empty
