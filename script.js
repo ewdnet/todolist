@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // let completedTasks = [];
 
     // get current tasks from localStorage, if any
-    let currentTasks = JSON.parse(localStorage.getItem('currentTasks')) || [];
+    // let currentTasks = JSON.parse(localStorage.getItem('currentTasks')) || [];
     // get them and call the render function
     // if (currentFromLocalStorage) {
     //     currentTasks = currentFromLocalStorage;
