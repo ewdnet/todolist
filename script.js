@@ -122,9 +122,9 @@ function getFromLocalStorage() {
     }
 }
 
-// List Actions: eventListener on the list items and functionen
+// item actions: eventListener on the list items and the functions
 
-// toggle the value to completed and not completed
+// toggle the value to completed or not completed
 function moveItem(id) {
     taskList.forEach((item) => {
         // use == , because one is number and other is string
@@ -148,7 +148,7 @@ function editItem(id, val) {
     addToLocalStorage(taskList);
 }
 
-// deletes a item from tasks array
+// deletes a item from the tasks array
 function deleteItem(id) {
     // filters out the item with the id and updates the todos array
     taskList = taskList.filter((item) => item.id != id);
@@ -157,16 +157,18 @@ function deleteItem(id) {
 }
 
 // eventListener on list elements
-olCurrent.addEventListener('click', listActions);
-olCompleted.addEventListener('click', listActions);
-// list actions. click on buttons with class ...
-function listActions(e) {
+olCurrent.addEventListener('click', itemActions);
+olCompleted.addEventListener('click', itemActions);
+// item actions: move, edit, delete
+function itemActions(e) {
+    // move item
     if (e.target.parentElement.classList.contains('btn-change')) {
         // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.getAttribute('data-id');
         // call the function
         moveItem(id);
     }
+    // edit item
     if (e.target.parentElement.classList.contains('btn-edit')) {
         // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
@@ -176,13 +178,14 @@ function listActions(e) {
         textInput.removeAttribute('readonly');
         e.target.parentElement.classList.add('uk-text-success');
         e.target.parentElement.setAttribute('data-uk-tooltip', 'title: Save the Changes');
-        e.target.addEventListener('click', (e) => {
+        e.target.onclick = () => {
             // get the new text (value) from input
             const val = textInput.value;
-            // call the function
+            // call the edit function
             editItem(id, val);
-        });
+        };
     }
+    // delete item
     if (e.target.parentElement.classList.contains('btn-delete')) {
         // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.getAttribute('data-id');
