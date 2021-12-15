@@ -80,14 +80,15 @@ function render() {
     taskList.forEach((item) => {
         const check = item.check;
         const collor = check ? 'success' : 'danger';
+        const change = check ? 'current' : 'completed';
         let li = `
         <li class="uk-card uk-card-default uk-card-body uk-card-hover uk-padding-small uk-flex uk-flex-middle" data-check="${item.check}" data-id="${item.id}">
-            <span class="btn-change uk-margin-small-right uk-icon-button uk-text-${collor}" data-uk-icon="icon: check; ratio: 1.3"></span>
+            <span class="btn-change uk-margin-small-right uk-icon-button uk-text-${collor}" data-uk-tooltip="title: Mark the Task as ${change}" data-uk-icon="icon: check; ratio: 1.3"></span>
             <span class="uk-flex-auto uk-flex uk-flex-between uk-flex-middle">
                 <input class="flex-auto uk-input" type="text" value="${item.text}" readonly>
-                <span class="btn-edit uk-margin-small-left uk-icon-button" data-uk-icon="icon: file-edit; ratio: 1.3"></span>
+                <span class="btn-edit uk-margin-small-left uk-icon-button" data-uk-tooltip="title: Edit the Task" data-uk-icon="icon: file-edit; ratio: 1.3"></span>
             </span>
-            <span class="btn-delete uk-margin-small-left uk-icon-button uk-text-danger" data-uk-icon="icon: trash; ratio: 1.3"></span>
+            <span class="btn-delete uk-margin-small-left uk-icon-button uk-text-danger" data-uk-tooltip="title: Delete the Task" data-uk-icon="icon: trash; ratio: 1.3"></span>
         </li>
         `;
         if (check === true) {
@@ -174,6 +175,7 @@ function listActions(e) {
         // make the input writable
         textInput.removeAttribute('readonly');
         e.target.parentElement.classList.add('uk-text-success');
+        e.target.parentElement.setAttribute('data-uk-tooltip', 'title: Save the Changes');
         e.target.addEventListener('click', (e) => {
             // get the new text (value) from input
             const val = textInput.value;
