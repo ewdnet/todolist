@@ -145,7 +145,6 @@ function editItem(id, val) {
         }
     });
     addToLocalStorage(taskList);
-    console.log(id + ' ' + val);
 }
 
 // deletes a item from tasks array
@@ -175,7 +174,6 @@ function listActions(e) {
             e.target.parentElement.classList.remove('uk-text-warning');
             e.target.parentElement.classList.add('uk-text-success');
             const val = textInput.value;
-            // console.log('Es funzt!');
             editItem(id, val);
         });
     }
