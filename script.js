@@ -121,7 +121,7 @@ function getFromLocalStorage() {
     }
 }
 
-// XXXX
+// List Actions: eventListener on the list items and functionen
 
 // toggle the value to completed and not completed
 function moveItem(id) {
@@ -149,7 +149,7 @@ function editItem(id, val) {
 
 // deletes a item from tasks array
 function deleteItem(id) {
-    // filters out the <li> with the id and updates the todos array
+    // filters out the item with the id and updates the todos array
     taskList = taskList.filter((item) => item.id != id);
     // update the localStorage
     addToLocalStorage(taskList);
@@ -161,24 +161,30 @@ olCompleted.addEventListener('click', listActions);
 // list actions. click on buttons with class ...
 function listActions(e) {
     if (e.target.parentElement.classList.contains('btn-change')) {
+        // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.getAttribute('data-id');
+        // call the function
         moveItem(id);
     }
     if (e.target.parentElement.classList.contains('btn-edit')) {
+        // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
+        // get the input element
         const textInput = e.target.parentElement.previousElementSibling;
+        // make the input writable
         textInput.removeAttribute('readonly');
-        e.target.parentElement.classList.remove('uk-text-success');
-        e.target.parentElement.classList.add('uk-text-warning');
+        e.target.parentElement.classList.add('uk-text-success');
         e.target.addEventListener('click', (e) => {
-            e.target.parentElement.classList.remove('uk-text-warning');
-            e.target.parentElement.classList.add('uk-text-success');
+            // get the new text (value) from input
             const val = textInput.value;
+            // call the function
             editItem(id, val);
         });
     }
     if (e.target.parentElement.classList.contains('btn-delete')) {
+        // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.getAttribute('data-id');
+        // call the function
         deleteItem(id);
     }
 }
