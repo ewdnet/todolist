@@ -1,78 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Task list</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
-  </head>
-  <body class="uk-flex uk-flex-column uk-background-muted" data-uk-height-viewport>
-    <header class="uk-section uk-section-primary uk-text-center">
-      <h1 class="uk-container"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: file-text; ratio: 1.6"></span><span>Todo list project</span></h1>
-      <p class="uk-container">JavaScript exercise<span class="uk-margin-small-left uk-icon" data-uk-icon="happy"></span></p>
-    </header>
-    <main class="uk-section uk-padding-remove-vertical uk-flex-auto">
-      <aside class="uk-container uk-container-xsmall">
-        <h3 class="uk-margin-remove-bottom uk-text-right">
-          <a class="uk-button uk-button-link" href="#new-task" data-uk-toggle>
-            <span class="uk-margin-small-right uk-icon new-task" data-uk-icon="plus-circle"></span>
-            Set new task
-          </a>
-        </h3>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Task list</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
+    </head>
 
-        <div id="new-task" data-uk-modal>
-          <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default" type="button" data-uk-close></button>
-            <div class="uk-modal-header">
-              <h4 class="uk-modal-title">New Task</h4>
-            </div>
-            <div class="uk-modal-body">
-              <form class="uk-form-stacked">
-                <div class="uk-margin">
-                  <label class="uk-form-label" for="item-input">New Task</label>
-                  <div class="uk-form-controls">
-                    <input id="item-input" name="item_input" class="uk-input" type="text" placeholder="Enter your Task ..." required />
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="uk-modal-footer uk-flex uk-flex-around">
-              <button id="btn-clear-input" class="uk-button uk-background-secondary uk-light uk-disabled">
-                <span class="uk-margin-small-right uk-icon" data-uk-icon="minus-circle"></span>
-                Clear
-              </button>
-              <button id="btn-add-item" class="uk-button uk-background-primary uk-light uk-disabled" type="submit">
-                <span class="uk-margin-small-right uk-icon" data-uk-icon="plus-circle"></span>
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      </aside>
-      <article class="uk-container uk-container-small uk-padding">
-        <header>
-          <h2 class="uk-text-center"><span class="uk-margin-small-right uk-icon" data-uk-icon="list"></span></span><span>Task list</span></h2>
-          <ul class="uk-tab uk-flex-center" data-uk-switcher="connect: .uk-switcher">
-            <li><a href="#current">Current</a></li>
-            <li><a href="#completed">Completed</a></li>
-          </ul>
+    <body class="uk-flex uk-flex-column uk-background-muted" data-uk-height-viewport>
+        <header class="uk-section uk-section-primary uk-text-center">
+            <h1 class="uk-container"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: file-text; ratio: 1.6"></span><span>Todo list project</span></h1>
+            <p class="uk-container">JavaScript exercise<span class="uk-margin-small-left uk-icon" data-uk-icon="happy"></span></p>
         </header>
-        <div class="uk-switcher uk-margin">
-          <ol class="uk-list" id="current">
-            <!-- &nbsp; -->
-          </ol>
-          <ol class="uk-list" id="completed">
-            <!-- &nbsp; -->
-          </ol>
-        </div>
-      </article>
-    </main>
-    <footer class="uk-section uk-section-secondary uk-padding-small">
-      <p class="uk-container uk-text-center"><small><span class="uk-margin-small-right uk-icon" data-uk-icon="users"></span>WDPT#006 - NOV 2021 | Codecademy</small></p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+        <main class="uk-section uk-padding-remove-vertical uk-flex-auto">
+            <aside class="uk-container uk-container-xsmall">
+                <h3 class="uk-margin-remove-bottom uk-text-right">
+                    <a class="uk-button uk-button-link" href="#new-task" data-uk-toggle>
+                        <span class="uk-margin-small-right uk-icon new-task" data-uk-icon="plus-circle"></span>
+                        <span>Set new task</span>
+                    </a>
+                </h3>
+                <div id="new-task" data-uk-modal>
+                    <div class="uk-modal-dialog">
+                        <form class="uk-form-stacked" id="form">
+                            <button class="uk-modal-close-outside" type="button" data-uk-close></button>
+                            <div class="uk-modal-header">
+                                <h4 class="uk-modal-title"><span class="uk-text-primary">Todo List</span></h4>
+                            </div>
+                            <div class="uk-modal-body">
+                                <div class="uk-margin">
+                                    <label class="uk-form-label" for="item-input">New Task</label>
+                                    <div class="uk-form-controls uk-flex uk-flex-between uk-flex-middle">
+                                        <input id="item-input" class="uk-input uk-flex-auto" type="text" placeholder="Enter your Task ..." />
+                                        <span id="btn-clear-input" class="uk-margin-small-left uk-icon-button" role="button" data-uk-tooltip="title: Clear Input Field" data-uk-icon="close"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-modal-footer uk-flex uk-flex-around">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">
+                                    <span class="uk-margin-small-right uk-icon" data-uk-icon="ban"></span>
+                                    <span>Close</span>
+                                </button>
+                                <button id="btn-add-item" class="uk-button uk-button-primary uk-disabled" type="submit">
+                                    <span class="uk-margin-small-right uk-icon" data-uk-icon="check"></span>
+                                    <span>Save</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </aside>
+            <article class="uk-container uk-container-small uk-padding">
+                <header>
+                    <h2 class="uk-text-center">
+                        <span class="uk-margin-small-right uk-icon" data-uk-icon="list"></span>
+                        <span>Task list</span>
+                    </h2>
+                    <ul class="uk-tab uk-flex-center" data-uk-switcher="connect: .uk-switcher">
+                        <li><a href="#current">Current</a></li>
+                        <li><a href="#completed">Completed</a></li>
+                    </ul>
+                </header>
+                <div class="uk-switcher uk-margin">
+                    <ol class="uk-list" id="current">
+                        <!-- &nbsp; -->
+                    </ol>
+                    <ol class="uk-list" id="completed">
+                        <!-- &nbsp; -->
+                    </ol>
+                </div>
+            </article>
+        </main>
+        <footer class="uk-section uk-section-secondary uk-padding-small">
+            <p class="uk-container uk-text-center">
+                <small><span class="uk-margin-small-right uk-icon" data-uk-icon="users"></span>Patrizio & Emil | WDPT#006 - NOV 2021</small>
+            </p>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
