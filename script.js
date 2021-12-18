@@ -174,7 +174,7 @@ function itemActions(e) {
         // call the function
         moveItem(id);
     }
-    // edit item
+    // edit item // Gio asking: console error
     if (e.target.parentElement.classList.contains('btn-edit')) {
         // get the item id (li data-id)
         const id = e.target.parentElement.parentElement.parentElement.getAttribute('data-id');
