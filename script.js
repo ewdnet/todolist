@@ -155,7 +155,7 @@ function editItem(id, val) {
 // deletes a item from the tasks array
 function deleteItem(id) {
     // filters out the item with the id and updates the todos array
-    taskList = taskList.filter((item) => item.id != id);
+    taskList = taskList.filter((item) => item.id !== id);
     // update the localStorage
     addToLocalStorage(taskList);
 }
@@ -209,7 +209,7 @@ function itemActions(e) {
     // delete item
     if (e.target.parentElement.classList.contains('btn-delete')) {
         // get the item id (li data-id)
-        const id = e.target.parentElement.parentElement.getAttribute('data-id');
+        const id = Number(e.target.parentElement.parentElement.getAttribute('data-id'));
         // call the function
         deleteItem(id);
     }
