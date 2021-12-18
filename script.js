@@ -55,11 +55,11 @@ function addNewItem(e) {
     // set the id for the new item
     const itemId = Date.now();
     // get the text for the new item
-    let itemText = itemInput.value;
+    const itemText = itemInput.value;
     // if the imput value is not empty ...
     if (itemText !== '') {
         // build the new item as a object
-        let itemObj = {
+        const itemObj = {
             id: itemId,
             check: false,
             text: itemText,
@@ -97,6 +97,7 @@ function render() {
         `;
         check === true ? (olCompleted.innerHTML += li) : (olCurrent.innerHTML += li);
     });
+    // taskList.length > 3 ? activeFooterButtons(taskList) : ''; // Gio asking
     activeFooterButtons(taskList);
     itemsCounter();
 }
