@@ -97,17 +97,15 @@ function render() {
         `;
         check === true ? (olCompleted.innerHTML += li) : (olCurrent.innerHTML += li);
     });
-    // taskList.length > 3 ? activeFooterButtons(taskList) : ''; // Gio asking
     activeFooterButtons(taskList);
     itemsCounter();
 }
 
 // function to add tasks to localStorage
 function addToLocalStorage(taskList) {
-    // conver the array to string then store it.
+    // conver the array to string
     localStorage.setItem('Tasks List', JSON.stringify(taskList));
-    // render them to screen
-    // render(taskList);
+    //  then store it to the localStorage.
     getFromLocalStorage();
 }
 
@@ -118,12 +116,12 @@ getFromLocalStorage();
 function getFromLocalStorage() {
     const data = localStorage.getItem('Tasks List');
     // if data exists
-    if (data) {
-        // converts back to array and store it in tasks array
-        taskList = JSON.parse(data);
-        // call the render function
-        render();
-    }
+    // if (data) {
+    // converts back to array and store it in tasks array
+    taskList = JSON.parse(data) || [];
+    // call the render function
+    render();
+    // }
 }
 
 // item actions: eventListener on the list items and the functions
@@ -160,6 +158,20 @@ function deleteItem(id) {
     taskList = taskList.filter((item) => item.id != id);
     // update the localStorage
     addToLocalStorage(taskList);
+}
+
+// items counter
+function itemsCounter() {
+    // get the span elements for the counter (badge)
+    const currentBadge = document.getElementById('current-badge');
+    const completedBadge = document.getElementById('completed-badge');
+    // count the current items
+    const currentItems = taskList.filter((item) => item.check === false).length;
+    // count the completed items
+    const completedItems = taskList.filter((item) => item.check === true).length;
+    //
+    currentBadge.innerText = currentItems;
+    completedBadge.innerText = completedItems;
 }
 
 // eventListener on the list (ol) elements
@@ -211,13 +223,13 @@ function itemActions(e) {
 function activeFooterButtons(taskList) {
     // if data exists
     if (taskList) {
-        const curr = taskList.some((item) => item.check === false);
-        const comp = taskList.some((item) => item.check === true);
+        const curr = taskList.filter((item) => item.check === false);
+        const comp = taskList.filter((item) => item.check === true);
         // active footer Buttons
         // current
-        curr ? footerCurrent.classList.remove('uk-hidden') : footerCurrent.classList.add('uk-hidden');
+        curr.length > 3 ? footerCurrent.classList.remove('uk-hidden') : footerCurrent.classList.add('uk-hidden');
         // completed
-        comp ? footerCompleted.classList.remove('uk-hidden') : footerCompleted.classList.add('uk-hidden');
+        comp.length > 3 ? footerCompleted.classList.remove('uk-hidden') : footerCompleted.classList.add('uk-hidden');
     }
 }
 
@@ -235,20 +247,6 @@ const completedDelete = document.getElementById('completed-delete');
 // onclick events for the delete buttons
 currentDelete.onclick = () => deleteItems(taskList, true);
 completedDelete.onclick = () => deleteItems(taskList, false);
-
-// items counter
-function itemsCounter() {
-    // get the span elements for the counter (badge)
-    const currentBadge = document.getElementById('current-badge');
-    const completedBadge = document.getElementById('completed-badge');
-    // count the current items
-    const currentItems = taskList.filter((item) => item.check === false).length;
-    // count the completed items
-    const completedItems = taskList.filter((item) => item.check === true).length;
-    //
-    currentBadge.innerText = currentItems;
-    completedBadge.innerText = completedItems;
-}
 
 // items list print preview (just for testing)
 
