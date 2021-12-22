@@ -133,6 +133,7 @@ function itemActions(event) {
         const id = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');
         const input = event.target.parentElement.previousElementSibling;
         input.removeAttribute('readonly');
+        input.focus();
         event.target.parentElement.classList.add('uk-text-success');
         event.target.parentElement.setAttribute('data-uk-tooltip', 'title: Save the Changes');
         event.target.onclick = () => {
