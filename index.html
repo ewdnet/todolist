@@ -42,7 +42,7 @@
                                     <span class="uk-margin-small-right uk-icon" data-uk-icon="ban"></span>
                                     <span>Close</span>
                                 </button>
-                                <button id="btn-add-item" class="uk-button uk-button-primary uk-disabled" type="submit">
+                                <button id="btn-add-item" class="uk-button uk-button-primary" type="submit">
                                     <span class="uk-margin-small-right uk-icon" data-uk-icon="check"></span>
                                     <span>Save</span>
                                 </button>
@@ -80,68 +80,9 @@
                         <!-- &nbsp; -->
                     </ol>
                 </div>
-                <footer class="uk-margin">
-                    <div class="tasks uk-switcher uk-margin">
-                        <div id="current-footer" class="uk-flex uk-flex-middle uk-flex-around uk-hidden">
-                            <button id="current-print" class="uk-button uk-button-default" data-uk-toggle="target: #printview"><span class="uk-margin-small-right uk-icon" data-uk-icon="print"></span>Print view</button>
-                            <a href="#current-delete-all" class="uk-button uk-button-default" data-uk-toggle> <span class="uk-margin-small-right uk-icon" data-uk-icon="trash"></span>Delete all </a>
-                        </div>
-                        <div id="completed-footer" class="uk-flex uk-flex-middle uk-flex-around uk-hidden">
-                            <button id="completed-print" class="uk-button uk-button-default" data-uk-toggle="target: #printview"><span class="uk-margin-small-right uk-icon" data-uk-icon="print"></span>Print view</button>
-                            <a href="#completed-delete-all" class="uk-button uk-button-default" data-uk-toggle> <span class="uk-margin-small-right uk-icon" data-uk-icon="trash"></span>Delete all </a>
-                        </div>
-                    </div>
-                    <div id="printview" class="uk-flex-top" data-uk-modal>
-                        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-                            <div class="uk-modal-header">
-                                <h3 class="uk-modal-title">Print Preview</h3>
-                            </div>
-                            <div id="print-body" class="uk-modal-body">
-                                <h4 id="print-title" class="uk-modal-title"><!-- &nbsp; --></h4>
-                                <ol id="print-list" class="uk-list uk-list-bullet">
-                                    <!-- &nbsp; -->
-                                </ol>
-                            </div>
-                            <div class="uk-modal-footer uk-flex uk-flex-middle uk-flex-around">
-                                <button class="uk-button uk-button-default uk-modal-close">
-                                    <span class="uk-margin-small-right uk-icon" data-uk-icon="ban"></span>
-                                    <span>Cancel</span>
-                                </button>
-                                <button id="get-to-printer" class="uk-button uk-button-primary uk-modal-close" type="button">
-                                    <span class="uk-margin-small-right uk-icon" data-uk-icon="print"></span>
-                                    <span>Print</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="current-delete-all" data-uk-modal>
-                        <div class="uk-modal-dialog">
-                            <div class="uk-modal-body">
-                                <h3 class="uk-modal-title uk-text-center">Deleting all current Tasks?</h3>
-                            </div>
-                            <div class="uk-modal-footer uk-flex uk-flex-middle uk-flex-around">
-                                <button class="uk-button uk-button-default uk-modal-close">
-                                    <span class="uk-margin-small-right uk-icon" data-uk-icon="ban"></span>
-                                    <span>Cancel</span>
-                                </button>
-                                <button id="current-delete" class="uk-button uk-button-danger uk-modal-close"><span class="uk-margin-small-right uk-icon" data-uk-icon="trash"></span>Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="completed-delete-all" data-uk-modal>
-                        <div class="uk-modal-dialog">
-                            <div class="uk-modal-body">
-                                <h3 class="uk-modal-title uk-text-center">Deleting all completed Tasks?</h3>
-                            </div>
-                            <div class="uk-modal-footer uk-flex uk-flex-middle uk-flex-around">
-                                <button class="uk-button uk-button-default uk-modal-close">
-                                    <span class="uk-margin-small-right uk-icon" data-uk-icon="ban"></span>
-                                    <span>Cancel</span>
-                                </button>
-                                <button id="completed-delete" class="uk-button uk-button-danger uk-modal-close"><span class="uk-margin-small-right uk-icon" data-uk-icon="trash"></span>Delete</button>
-                            </div>
-                        </div>
-                    </div>
+                <footer class="tasks uk-switcher uk-margin uk-flex uk-flex-center">
+                    <button class="btn-delete-current uk-button uk-button-default uk-hidden" type="submit"><span class="btn-delete uk-margin-small-right uk-icon" data-uk-icon="trash"></span>Delete All</button>
+                    <button class="btn-delete-completed uk-button uk-button-default uk-hidden" type="submit"><span class="btn-delete uk-margin-small-right uk-icon" data-uk-icon="trash"></span>Delete All</button>
                 </footer>
             </article>
         </main>
