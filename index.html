@@ -33,16 +33,16 @@
                                     <label class="uk-form-label" for="item-input">New Task</label>
                                     <div class="uk-form-controls uk-flex uk-flex-between uk-flex-middle">
                                         <input id="item-input" class="uk-input uk-flex-auto" type="text" placeholder="Enter your Task ..." autofocus />
-                                        <span id="btn-clear-input" class="uk-margin-small-left uk-icon-button" role="button" data-uk-tooltip="title: Clear Input Field" data-uk-icon="close"></span>
+                                        <span id="btn-clear-input" class="uk-margin-small-left uk-icon-button uk-disabled" role="button" data-uk-tooltip="title: Clear Input Field" data-uk-icon="close"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-modal-footer uk-flex uk-flex-around">
                                 <button class="uk-button uk-button-default uk-modal-close" type="button">
                                     <span class="uk-margin-small-right uk-icon" data-uk-icon="ban"></span>
-                                    <span>Close</span>
+                                    <span>Cancel</span>
                                 </button>
-                                <button id="btn-add-item" class="uk-button uk-button-primary" type="submit">
+                                <button id="btn-add-item" class="uk-button uk-button-primary uk-disabled" type="submit">
                                     <span class="uk-margin-small-right uk-icon" data-uk-icon="check"></span>
                                     <span>Save</span>
                                 </button>
@@ -93,6 +93,6 @@
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
-        <script src="script.js"></script>
+        <script src="todo.js"></script>
     </body>
 </html>
