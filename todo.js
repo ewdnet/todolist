@@ -86,14 +86,14 @@ function addNewTask(task) {
 
 function checkTask(id) {
     list.forEach((item) => {
-        if (item.id == id) item.check = !item.check;
+        if (item.id === id) item.check = !item.check;
     });
     addToLocalStorage();
 }
 
 function editTask(id, val) {
     list.forEach((item) => {
-        if (item.id == id) item.text = val;
+        if (item.id === id) item.text = val;
     });
     addToLocalStorage();
 }
@@ -131,7 +131,7 @@ function render() {
         let li = `
         <li class="uk-card uk-card-default uk-card-body uk-card-hover uk-padding-small uk-flex uk-flex-middle" data-check="${item.check}" data-id="${item.id}">
             <span role="button" class="btn-check uk-margin-small-right uk-icon-button uk-text-${collor}" data-uk-tooltip="title: Mark the Task as ${change}" data-uk-icon="icon: check; ratio: 1.3"></span>
-            <span class="uk-flex-auto uk-flex uk-flex-between uk-flex-middle">
+            <span class="input-wrap uk-flex-auto uk-flex uk-flex-between uk-flex-middle">
                 <input class="flex-auto uk-input" type="text" value="${item.text}" readonly>
                 <span role="button" class="btn-edit uk-margin-small-left uk-icon-button" data-uk-tooltip="title: Edit the Task" data-uk-icon="icon: file-edit; ratio: 1.3"></span>
             </span>
@@ -148,24 +148,24 @@ currOl.addEventListener('click', itemActions);
 compOl.addEventListener('click', itemActions);
 
 function itemActions(event) {
-    if (event.target.parentElement.classList.contains('btn-check')) {
-        const id = event.target.parentElement.parentElement.getAttribute('data-id');
+    if (event.target.closest('.btn-check')) {
+        const id = Number(event.target.closest('li').getAttribute('data-id'));
         checkTask(id);
     }
-    if (event.target.parentElement.classList.contains('btn-edit')) {
-        const id = event.target.parentElement.parentElement.parentElement.getAttribute('data-id');
-        const input = event.target.parentElement.previousElementSibling;
+    if (event.target.closest('.btn-edit')) {
+        const id = Number(event.target.closest('li').getAttribute('data-id'));
+        const input = event.target.closest('.input-wrap').firstElementChild;
         input.removeAttribute('readonly');
         input.focus();
-        event.target.parentElement.classList.add('uk-text-success');
-        event.target.parentElement.setAttribute('data-uk-tooltip', 'title: Save the Changes');
-        event.target.onclick = () => {
+        event.target.closest('.btn-edit').classList.add('uk-text-success');
+        event.target.closest('.btn-edit').setAttribute('data-uk-tooltip', 'title: Save the Changes');
+        event.target.closest('.btn-edit').onclick = () => {
             const val = input.value;
             editTask(id, val);
         };
     }
-    if (event.target.parentElement.classList.contains('btn-delete')) {
-        const id = Number(event.target.parentElement.parentElement.getAttribute('data-id'));
+    if (event.target.closest('.btn-delete')) {
+        const id = Number(event.target.closest('li').getAttribute('data-id'));
         deleteTask(id);
     }
 }
