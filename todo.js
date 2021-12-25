@@ -11,10 +11,10 @@ const add = document.getElementById('btn-add-item');
 const currOl = document.getElementById('current');
 // ol completed
 const compOl = document.getElementById('completed');
-//
+// counter for the current / completed list items
 const currBdg = document.getElementById('current-badge');
 const compBdg = document.getElementById('completed-badge');
-//
+// delete buttons for the current / completed lists
 const currDel = document.querySelector('.btn-delete-current');
 const compDel = document.querySelector('.btn-delete-completed');
 
@@ -123,7 +123,6 @@ function itemsCounter() {
 function render() {
     currOl.innerHTML = '';
     compOl.innerHTML = '';
-    // list = list.reverse();
     list.forEach((item) => {
         const check = item.check;
         const collor = check ? 'success' : 'danger';
