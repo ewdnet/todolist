@@ -99,12 +99,12 @@ function editTask(id, val) {
 }
 
 function deleteTask(id) {
-  list = list.filter(item => item.id !== id)
+  list = list.pop(item => item.id === id)
   addToLocalStorage()
 }
 
-function deleteAll(checked) {
-  list = list.filter(item => item.check !== checked)
+function deleteAll(check) {
+  list = list.filter(item => item.check !== check)
   addToLocalStorage()
 }
 
