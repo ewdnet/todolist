@@ -99,7 +99,7 @@ function editTask(id, val) {
 }
 
 function deleteTask(id) {
-  list = list.pop(item => item.id === id)
+  list = list.filter(item => item.id !== id)
   addToLocalStorage()
 }
 
